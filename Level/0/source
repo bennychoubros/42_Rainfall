@@ -1,0 +1,9 @@
+#include <stdlib.h>
+
+int main(int argc, char **argv)
+{
+	if (atoi(argv[1]])
+		system("/bin/bash");
+	return(0);
+}
+

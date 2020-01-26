@@ -1,0 +1,7 @@
+on decouvre qu'un "if != 423" nous fait quiter le programme,
+donc la on entre en parametre 423.
+un promt different s'affiche,
+la lexecution d'un "ls" nous indique que nous avons plus les droit
+donc changement d'utilisateur
+on test "cat /home/user/level1/.pass"
+BINGO

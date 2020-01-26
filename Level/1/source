@@ -1,0 +1,15 @@
+int run()
+{
+	fwrite("Good...wait What!?",1,19,STDOUT);
+	system("/bin/sh);
+	return();
+}
+
+int main()
+{
+	char string[80];
+
+	gets(&string);
+
+	return(value);
+}
