@@ -1,0 +1,24 @@
+v()
+{
+	char c[536];
+	int p,i = 0;
+
+	fget(c,0x200,);
+	p = printf(c);
+	p = i;
+	if(p != 0x40)
+	{
+		return;
+	}
+	fputs("wait wat !?");
+	system("/bin/bash");
+	return;
+	
+}
+
+int main()
+{
+	v();
+	return();
+
+}

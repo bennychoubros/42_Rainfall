@@ -1,0 +1,21 @@
+char *p()
+{
+	char c[104];
+
+	fflush();
+	gets(c);
+	if((value & 0xb0000000) == 0xb0000000)
+	{
+		printf(value);
+		exit();
+	} 
+	puts(c);
+	return(strdup(c));
+}
+
+
+int main()
+{
+	p();
+	return();
+}
