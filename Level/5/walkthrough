@@ -1,0 +1,34 @@
+aim : redirect call 
+
+exit call to o() fonction in n() fonction.
+
+fgets and printf as previous level.
+
+so need to replace at 0x080484ff	: e8 cc fe ff ff  (call exit)
+		   by	 		: e8 a1 ff ff ff  (call -91(o()))
+
+
+they sub esp by 0x218, and start write at esp add 0x200.
+So 0x18 mean 24 in decimal, adresses are on 4 octet, 6*4 = 24
+6th args
+
+padding for a1			: 161
+size of injection		: 7
+padding for ff			: 95
+size of second injection	: 7
+
+lengh of the string
+161 + 7 + 95 + 7 = 268
+
+find args padding args generate by the string
+268 / 4 = 67
+
+
+start of args
+67 + 6 = 73 
+
+## an other way was more simple, by put adresses at the start of the string,
+## so the arg start would be 6.
+
+
+
