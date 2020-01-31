@@ -1,0 +1,26 @@
+int p(char * c)
+{
+	return(printf(c));
+	
+}
+
+int n()
+{
+	in i=0;
+	char c[0x200];
+	fgets(c,0x200,);
+	p(c);
+
+	if(i == 0x01025544)
+	{
+	fputs();
+	system("/bin/cat /home/user/level4/.pass");
+	}
+	retrun();
+}
+
+int main()
+{
+	n();
+	return();
+}
