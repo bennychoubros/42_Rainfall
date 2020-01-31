@@ -1,1 +1,22 @@
+int	o()
+{
+	system(/bin/bash);
+	exit();
+}
 
+
+int	n()
+{
+	char c[0x200]
+	
+	fgets(c,0x200,);
+	printf(c);
+	exit();
+}
+
+
+int main ()
+{
+	n();
+	return();
+}
