@@ -1,0 +1,24 @@
+int n()
+{
+	system("/bin/bash");
+	return;
+}
+
+int m()
+{
+	puts("nope\n");
+	return;
+}
+
+int main()
+{
+	char	*i;
+	char	*i2;
+	
+	i = malloc(64);
+	i2 = malloc(4);
+	*i2 = &m();
+	(*strcpy(i - 4,i))();
+	return();
+	
+}
