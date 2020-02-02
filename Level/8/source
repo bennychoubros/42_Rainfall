@@ -1,0 +1,34 @@
+int main()
+{
+	void	*auth;
+	void	*service;
+	
+	
+	printf("%p, %p\n", auth, service);
+	while(fgets(c,0x80,) == 0)
+	{
+
+		if (c == "auth ")
+		{
+			auth = malloc(4);
+			*auth = 0;
+			
+		}
+		if (c == "reset")
+		{
+			free();
+		}
+		if (c == "service")
+		{
+			*service = strdup(c + 7); 
+		}
+		if (c == "login")
+		{	
+			*auth = "blabla";
+			if (auth+32 != NULL)
+				system("/bin/bash");
+			fwrite(,,,);
+		}
+	}
+}
+
