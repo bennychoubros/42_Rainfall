@@ -1,0 +1,30 @@
+int  m()
+{
+
+	time();
+	printf("%s - %d);
+	return();
+
+}
+
+int main(int argc, char *argv)
+{
+	char *a;
+	char *b;
+	char *c;
+	char *d;
+
+	a = malloc(8);
+	*a = 1;
+	*(a + 4) = malloc(8);
+	c = malloc(8);
+	*c = 2;
+	*(c + 4) = malloc(8);
+	strcpy(a + 4, argv[1]);
+	strcpy(c + 4, argv[2]);
+	fopen("/home/user/level8/.pass", "r");
+	puts("~~");
+	return();
+	
+	
+}

