@@ -7,8 +7,8 @@ int	main(int argc, char *argv)
 	{
 		exit();
 	}
-	classe_a = _ZN1NC1Ei(_Znwj(6c), 5);
-	classe_b = _ZN1NC1Ei(_Znwj(6c), 6);
+	_ZN1NC1Ei(classe_a = _Znwj(6c), 5);
+	_ZN1NC1Ei(classe_b = _Znwj(6c), 6);
 	_ZN1N13setannotationEPc(classe_a, argv[1]);
 	
 	(*classe_b)(classe_a);

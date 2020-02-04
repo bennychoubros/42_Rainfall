@@ -1,13 +1,16 @@
-we discovered that was an oriented-object code
+it look like an oriented-object code
 like cpp or c#
 
-segfault if we give more than 108 char in param 1
+first step they alloc 2 area of 108 bits
 
-and it's due to a call "setannotation"
-because memcpy blablabla
-overflow blablabla
+then they did a memcpy of first param's program
 
-utilistation de poiteur de pointer 
-blablabla 
+without any control of overflow
 
-les classes font 108 donc audela de 108 ont se retrouve dans la suivante 
+so over 108 we step on second area start.
+
+and guess what they call an adress store
+at the second area start.
+
+we need to write 108 char to filled first zone
+then write the adress of a shellcode
