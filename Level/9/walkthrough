@@ -1,0 +1,13 @@
+we discovered that was an oriented-object code
+like cpp or c#
+
+segfault if we give more than 108 char in param 1
+
+and it's due to a call "setannotation"
+because memcpy blablabla
+overflow blablabla
+
+utilistation de poiteur de pointer 
+blablabla 
+
+les classes font 108 donc audela de 108 ont se retrouve dans la suivante 
