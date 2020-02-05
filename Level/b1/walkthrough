@@ -1,0 +1,20 @@
+3 calls :	-atoi
+		-memcpy
+		-execl
+
+Excel is our goal.
+But it need some condition
+to access it. if one atoi 
+need to return something
+under 0x9. And after memcpy,
+where the returned value was
+stored need to be 0x574f4c46
+
+atoi is use to set the lengh
+of memcpy.
+and memcpy will copy second
+parameter gived to the program
+upstream where the atoi return
+is stored.
+
+
