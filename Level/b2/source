@@ -1,0 +1,50 @@
+int language = 0;
+
+void	greetuser(char *src);
+{
+	char s[72];
+
+	if (language == 1)
+	{
+		s = "HyvÃ¤Ã¤ pÃ¤ivÃ¤Ã¤ "
+	}
+	if (language == 2)
+	{
+		s = "Goedemiddag! "
+	}
+	if (language == 0)
+	{
+		s  = "Hello "
+	}
+	strcat(s,src);
+	puts(s);
+}
+
+int main(int argc, char **argv)
+{
+	char *env;
+	char s[80] = {0};
+	char s1[80];
+	
+
+	if (argc != 3)
+		return(1);
+	strncpy(s, argv[1], 40);
+	strncpy(&(s[40]), argv[2], 32);
+	env = getenv("LANG");
+	if (env)
+	{
+		if(memcmp(env, "fi",2))
+		{
+			language = 1;
+		}
+		if(memcmp(env, "nl",2))
+		{
+			language = 2;			
+		}
+		memcpy(s1,s, 76);
+		greetuser(&s1);
+	}
+	
+
+}

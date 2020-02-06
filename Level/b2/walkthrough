@@ -1,0 +1,60 @@
+
+Program input:
+	This program requiere 2 prarameters,
+	about first parameter, over 40 bytes
+	remaining will be ignor.
+	and about second parameter, it's over
+	32 bytes.
+
+Set original string:
+	First of all it will take an area of
+	40 bytes, and set it to zero.
+	Secondly, set first parameter in, at 
+	offset 0, with a maximum of 40 bytes
+	write.
+	Thirdly, set second parameter in, at
+	offset 40, with a maximum of 32 bytes
+	write.
+
+Intersting behavior:
+	If first part of the original string 
+	is filled fully, it will considered
+	as one unique string. And from two 
+	string limited, we can reach a string
+	of 72 in a row.
+
+Environment check:
+	The language value is depending of
+	environment "LANG", "nl" will set 2,
+	"fi" will set 1, any other will result
+	0
+
+Set second string:
+	this will be copied from orginal string
+	until null value and with maximum lengh
+	of 76 (because 19 run of 4 bytes copied
+	at times)
+
+Greetuser fonction:
+	they create third 72 wide string.
+	Then fill it with a string depending on 
+	"Environment check".
+	Only size of the string set is important.
+	env=1 = 18 wide.
+	env=2 = 13 wide.
+	env=0 = 5  wide.
+	At end of this string will be add the
+	"second string", then display with puts.
+
+Naughty behavior:
+	So we can fill a string of 72 byte with
+	an other string of 72 bytes. But we won't
+	start at offset 0, but end of the 3th string 
+	already here.
+	We can overflow of the lengh of the third
+	string.
+	
+	
+	
+
+
