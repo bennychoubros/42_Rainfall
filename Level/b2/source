@@ -8,11 +8,11 @@ void	greetuser(char *src);
 	{
 		s = "HyvÃ¤Ã¤ pÃ¤ivÃ¤Ã¤ "
 	}
-	if (language == 2)
+	else if (language == 2)
 	{
 		s = "Goedemiddag! "
 	}
-	if (language == 0)
+	else if(language == 0)
 	{
 		s  = "Hello "
 	}
@@ -38,13 +38,13 @@ int main(int argc, char **argv)
 		{
 			language = 1;
 		}
-		if(memcmp(env, "nl",2))
+		else if(memcmp(env, "nl",2))
 		{
 			language = 2;			
 		}
 		memcpy(s1,s, 76);
 		greetuser(&s1);
 	}
-	
+	return();
 
 }
