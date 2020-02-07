@@ -1,0 +1,16 @@
+The program take 1 parameter, and use it two time.
+Firstly in atoi and secondly in strcmp.
+atoi will return a value use as an index to set at zero 
+a char of string 
+
+but atoi return if it found nothing.
+
+so strcmp will compare unknow value to our parameter
+
+if parameter one is a null string,
+atoi will return 0 and set 0 at start of his string.
+
+because our both string are egal we can pass if condition 
+and access to sub shell.
+
+well done 

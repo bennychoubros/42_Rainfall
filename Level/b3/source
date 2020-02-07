@@ -1,0 +1,27 @@
+int	main(int argc, char *argv)
+{
+	int fd;
+	char s[];
+
+	fd =  fopen("home/user/end/.pass", "R");
+	memset(s,0,132);
+	if (fd != 0 && ac = 2)
+	{
+		fread(s, 1 , 66, fd);
+		s[55] = 0;
+		s[atoi(argv[1])] = 0;
+		fread(&s[68] ,1 ,41 ,fd);
+		close(fd);
+		if(strcmp(s,argv[1]) == 0)
+		{
+			execl(/bin/sh);
+		}
+		else
+		{
+			puts(&s[68]);
+		}
+		return(0);
+		
+	}
+	return(0xffffffffffff);
+}
