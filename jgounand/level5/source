@@ -1,0 +1,17 @@
+void o()
+{
+	system("/bin/dash");
+	exit(1);
+}
+void n()
+{
+	char *str;
+	fgets(str,0x200,STDIN);
+	printf(str);
+	exit();
+}
+
+int main()
+{
+	return (n());
+}
