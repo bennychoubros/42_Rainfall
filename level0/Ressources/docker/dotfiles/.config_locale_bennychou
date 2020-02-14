@@ -1,0 +1,52 @@
+#--- Config locale ---#
+	alias confl="vim ~/.config_locale_bennychou"
+	alias ex_confl="source ~/.config_locale_bennychou"
+	alias zshrc="vim ~/.zshrc"
+	alias ex_zshrc="source ~/.zshrc"
+	alias ohmyzsh="vim ~/.oh-my-zsh"
+	alias vimrc='vim ~/.vimrc'
+	alias ex_vimrc='source ~/.vimrc'
+	alias vi='vim'
+
+#--- Navigation ---#
+	alias godev='cd ~/Documents/42/dev_projects/'
+	alias go42='cd ~/Documents/42'
+	alias goDownloads='cd ~/Downloads ; ll'
+	alias goDoc='cd ~/Documents ; ll'
+	alias gotmp='cd /tmp ; ls'
+	alias goetc='cd /etc ; ls'
+	alias godesk='cd ~/Desktop ; ll'
+
+#--- Commandes Utiles ---#
+	alias dircmp='dircmp -s \!:1 \!:2| \grep -v ^$ '
+	alias untar='tar -xvf'
+
+#--- Macros ---#
+	alias DATE='date +%F_%H:%M'
+#  changer de mode un repertoire pour avoir tous les droits
+	alias chmod777='chmod -R 777'
+#  changer de mode pour revenir a 744
+	alias chmod744='chmod -R 744'
+
+#--- Les alias de visibilite ---#
+ 	alias lls='ls -alst | more'
+	alias lla='ls -la'
+	alias ll='ls -l'
+	alias la='ls -a'
+	alias h='history'
+
+#--- Recherche ---#
+#  dans le binaire
+	alias nmu='nm -u'
+	alias nmp='nm -p'
+	alias nmpu='nm -up'
+#  dans le code
+	alias srch='grep -nRi'
+	alias srchf='grep -ilnR'
+#  dans l'historique
+	alias findh='history | grep -i'
+#  dans les alias
+	alias finda='alias'
+#  find memory leaks
+	function lks()
+	while 1; do sleep 1  && clear && leaks $1 ; done
