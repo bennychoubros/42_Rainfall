@@ -4,21 +4,20 @@ four commands:	- "auth "
 		- "service "
 		- "login"
 
-Auth did a malloc of 4 and set it
-to 0.
+-Auth: did a malloc of 4 and set it to 0.
 
-Reset free last malloc.
+-Reset: free last malloc.
 
-Service did an strdup of the following string.
+-Service: did an strdup of the following string.
 
-Login display "Password:"
+-Login: display "Password:"
 
 
 
 But in login they are also a comparison.
 That check if there is something at
 auth store more 32 octet, that comparison
-block a call to system.
+manage access to a call to system.
 
 
 we need to find how witre at auth + 32.
@@ -29,7 +28,18 @@ nothing stop us to did a new call
 and nothing free older one.
 
 Auth set the start point and write nothing,
-so last entry possible, is by service,
-write a string long enough.
+so last entry possible(mean possiblitlity 
+to write data), is by service, write a string
+long enough.
 
 job done congratulation
+
+exemple:
+
+./level8
+(nil), (nil)
+auth df
+0x804a008, (nil)
+service cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+0x804a008, 0x804a018
+login

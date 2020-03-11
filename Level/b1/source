@@ -1,0 +1,17 @@
+int main(int argc, char *argv)
+{
+	int i;
+	void *d;
+	
+	i = atoi(argv[0]);
+	if (i <= 9)
+	{
+		memcpy(d,argv[1], i * 4);
+		if(i == 0x574f4c46)
+		{
+			execl("/bin/bash");
+		}
+		return(0);
+	}
+	return(1);
+}

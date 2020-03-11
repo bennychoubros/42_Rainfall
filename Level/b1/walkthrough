@@ -1,0 +1,32 @@
+3 calls :	-atoi
+		-memcpy
+		-execl
+
+Execl is our goal.
+But it need some condition
+to access it. if one atoi 
+need to return something
+under 0x9. And after memcpy,
+where the returned value was
+stored need to be 0x574f4c46
+
+atoi is use to set the lengh
+of memcpy.
+and memcpy will copy second
+parameter gived to the program
+upstream where the atoi return
+is stored.
+
+atoi is store at esp + 0x3c
+memcpy write at  esp + 0x14
+So we had a padd of 40,
+more 4 to write ur adress.
+44 but this value is multiply
+by 4.
+
+INT_MIN is below 0x9, and multiply
+by 4 result to an integer overflow.
+by adding 11 to INT_MIN, we've got 
+44 after multiplication.
+
+./bonus1 -2147483637  $(python -c 'print "B" * 40  + "\x46\x4c\x4f\x57"')

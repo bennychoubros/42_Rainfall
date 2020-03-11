@@ -3,7 +3,15 @@
 int main(int argc, char **argv)
 {
 	if (atoi(argv[1]])
-		system("/bin/bash");
+	{
+		getegid();
+		geteuid();
+		setresgid();
+		setresuid();
+		execv();
+	}
+
+	fwrite();
 	return(0);
 }
 
